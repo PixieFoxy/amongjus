@@ -1,0 +1,138 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ********** DATABASE MODELS ********** //
+
+// ********** USER/ACCOUNT MANAGEMENT ********** //
+
+model User {
+  id       Int      @id @default(autoincrement())
+  email    String   @unique
+  password String
+  profile  Profile?
+  orders   Order[]
+  role     Role     @default(USER)
+}
+
+model Profile {
+  id        Int     @id @default(autoincrement())
+  firstName String?
+  lastName  String?
+  gender    Gender?
+  bio       String?
+
+  user   User @relation(fields: [userId], references: [id])
+  userId Int  @unique
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum Gender {
+  male
+  female
+  other
+}
+
+// ********** MENU & PRODUCTS ********** //
+// ********** JUICE ********** //
+model Juice {
+  id          Int      @id @default(autoincrement())
+  name        String
+  desc        String
+  ingredients String[]
+  productUrl  String?
+  pictureUrl  String?
+
+  /// Price cannot be a negative number.
+  price     Int
+  size      Int
+  nutrition Nutrition?
+
+  orderedIn OrderedProduct[]
+}
+
+model Nutrition {
+  juice   Juice @relation(fields: [juiceId], references: [id])
+  juiceId Int   @unique
+
+  /// Energy is measured in calories.
+  energy  Decimal @db.Decimal(4, 1)
+  // The rest of the nutritions are measured in grams. Convert sodium to milligrams when rendering.
+  fat     Decimal @db.Decimal(3, 1)
+  carbs   Decimal @db.Decimal(3, 1)
+  protein Decimal @db.Decimal(3, 1)
+  fibre   Decimal @db.Decimal(3, 1)
+  sugar   Decimal @db.Decimal(3, 1)
+  sodium  Decimal @db.Decimal(3, 1)
+}
+
+// model JuicePriceSize {
+//   id          Int   @id @default(autoincrement())
+//   juice       Juice @relation(fields: [juiceId], references: [id])
+//   juiceId     Int
+//   /// Price cannot be a negative number.
+//   price       Int
+//   servingSize Int
+// }
+
+// ********** NON-JUICE ********** //
+model Container {
+  id         Int     @id @default(autoincrement())
+  name       String
+  desc       String
+  size       Int
+  productUrl String?
+  pictureUrl String?
+  /// Price cannot be a negative number.
+  price      Int
+
+  orderedIn OrderedProduct[]
+}
+
+// ********** ORDER & PAYMENT ********** //
+
+model Order {
+  id Int @id @default(autoincrement())
+
+  customer   User @relation(fields: [customerId], references: [id])
+  customerId Int
+
+  products OrderedProduct[]
+
+  // All fields below must be greater or equal to 0.
+  subtotal Int
+  discount Int?
+  tax      Int
+  total    Int
+}
+
+model OrderedProduct {
+  id   Int         @id @default(autoincrement())
+  /// Quantity must be greater than zero.
+  qty  Int
+  type ProductType
+
+  juice     Juice?     @relation(fields: [juiceId], references: [id])
+  container Container? @relation(fields: [containerId], references: [id])
+
+  juiceId     Int?
+  containerId Int?
+
+  order   Order @relation(fields: [orderId], references: [id])
+  orderId Int
+}
+
+enum ProductType {
+  juice
+  container
+  other
+}
