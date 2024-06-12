@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "icon": "icon-[icon-park-outline--pure-natural]",
+    "title": "100% Natural Ingredients",
+    "desc": "No additives, no artificial matter, no genetically modified stuff—only pure, naturally existing ingredients."
+  },
+  {
+    "id": 2,
+    "icon": "icon-[carbon--sustainability]",
+    "title": "Sustainably Sourced",
+    "desc": "Ain't no shit gonna hurt from us juicing dem fruits—our ingredients are handpicked meticulously from local farms without any ill-intentions."
+  },
+  {
+    "id": 3,
+    "icon": "icon-[bx--donate-heart]",
+    "title": "Supporting Environment Cause",
+    "desc": "We pay more so nature suffers less—for every portion of juice sold, we donate IDR 2,000 to partnering environmental NGOs."
+  },
+  {
+    "id": 4,
+    "icon": "icon-[streamline--target]",
+    "title": "Fulfill Your Goals",
+    "desc": "Hit bullseye everytime with our accurate nutrition tracking—down to the last minute details—to keep track of your goals, whatever the form they take of."
+  },
+  {
+    "id": 5,
+    "icon": "icon-[arcticons--iconrequest]",
+    "title": "Gamification Activated",
+    "desc": "You will never walk alone in this quest of awesomeness! Your journey will be filled with small wins and shiny items and achievements. So, are you ready, player one?"
+  },
+  {
+    "id": 6,
+    "icon": "icon-[file-icons--jsx-atom]",
+    "title": "Backed by Science",
+    "desc": "Those nutritional values do not fall from the sky—our scientists have done extensive research to make sure that the contents stay true to the nature."
+  }
+]

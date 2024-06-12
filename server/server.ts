@@ -5,9 +5,9 @@ import type { Request, Response } from "express";
 import { userRouter } from "./routes/userRouter";
 import { passport } from "./middlewares/auth/passport"
 
-dotenv.config()
+dotenv.config({ path: "../.env" });
 
-const app = express()
+const app = express();
 const port = process.env.SERVER_PORT
 
 app.set('trust proxy', 1);

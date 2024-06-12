@@ -1,9 +1,6 @@
-import { prisma } from "../../config/prismaClient";
+import { prisma } from "../../config/prisma/prismaClient";
 import * as bcrypt from "bcrypt";
 import type { Request, Response } from "express";
-import { hashPassword } from "../../middlewares/hashPassword";
-import * as validator from "express-validator"
-import { Prisma, Role } from "@prisma/client";
 
 async function loginUser(req: Request, res: Response) {
     try {

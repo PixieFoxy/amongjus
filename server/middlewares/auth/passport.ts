@@ -1,6 +1,6 @@
 import passport from 'passport';
 import { Strategy } from 'passport-local';
-import { prisma } from '../../config/prismaClient';
+import { prisma } from '../../config/prisma/prismaClient';
 import * as bcrypt from 'bcrypt';
 
 passport.use(new Strategy({

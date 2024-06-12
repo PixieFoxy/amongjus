@@ -1,4 +1,4 @@
-import { prisma } from "../../config/prismaClient";
+import { prisma } from "../../config/prisma/prismaClient";
 import type { Request, Response } from "express";
 import { hashPassword } from "../../middlewares/hashPassword";
 import { Prisma, Role } from "@prisma/client";
