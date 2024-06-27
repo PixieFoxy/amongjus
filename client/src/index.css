@@ -7,7 +7,22 @@
 
 @layer base {
     html {
-        @apply bg-bg-page
+        @apply bg-ash-gray-200
+    }
+    form {
+        @apply grid grid-cols-1 place-items-start rounded-lg w-1/2 p-8
+    }
+    form label {
+        @apply font-roboto-mono font-bold text-xl
+    }
+    form input {
+        @apply px-3 py-2 mr-3 mt-2 mb-4 font-roboto-mono rounded-md w-full bg-gray-200
+    }
+    form input:focus {
+        @apply bg-timberwolf-dark outline-black text-white outline outline-2
+    }
+    form button {
+        @apply p-4 mt-8 rounded-md bg-ash-gray-500 hover:bg-ash-gray-800 hover:text-white text-2xl font-work-sans font-bold tracking-wider place-self-center
     }
 }
 
@@ -24,7 +39,7 @@
         @apply font-permanent-marker font-normal text-5xl
     }
 
-    .hero-buttons button{
+    .hero-buttons button {
         @apply rounded-lg px-8 py-6 text-nowrap outline outline-black
     }
 }

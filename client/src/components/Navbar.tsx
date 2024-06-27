@@ -1,27 +1,51 @@
-import React from "react";
+import { NavLink, Link } from "react-router-dom";
 import logo from "../assets/logo.png";
+import useAuth from "../hooks/useAuth";
 
 const Navbar = () => {
+  const navbarClass = ({ isActive }: { isActive: boolean }): string => {
+    return isActive ? "border-b-2 navbar-menu-item" : "navbar-menu-item";
+  };
+
+  const { user } = useAuth();
+
   return (
     <>
-      <div id="navbar-container" className="flex justify-between max-w-screen h-auto px-8 py-4 border-b border-black border-opacity-100">
+      <div
+        id="navbar-container"
+        className="flex justify-between max-w-screen h-auto px-8 py-4 border-b border-black border-opacity-100"
+      >
         <div id="navbar-logo">
-          <a href="/">
-            <img src={logo} className="w-full h-full" alt="amongjus logo"/>
-          </a>
+          <Link to="/">
+            <img src={logo} className="w-full h-full" alt="amongjus logo" />
+          </Link>
         </div>
-        <div id="navbar-menu" className="flex justify-between items-center mr-8 basis-1/2">
-          <div className="navbar-menu-item">
-            <a href="#">About Us</a>
+        <div
+          id="navbar-menu"
+          className="flex justify-between items-center mr-8 basis-1/2"
+        >
+          <div>
+            <NavLink className={navbarClass} to="/about">
+              About Us
+            </NavLink>
           </div>
-          <div className="navbar-menu-item">
-            <a href="#">Products</a>
+          <div>
+            <NavLink className={navbarClass} to="/register">
+              Products
+            </NavLink>
           </div>
-          <div className="navbar-menu-item">
-            <a href="#">Cart</a>
+          <div>
+            <NavLink className={navbarClass} to="/login">
+              Cart
+            </NavLink>
           </div>
-          <div className="navbar-menu-item">
-            <a href="#">Login</a>
+          <div>
+            <NavLink
+              className={navbarClass}
+              to={user.id ? "/dashboard" : "/login"}
+            >
+              {user.id ? user.email : "Login"}
+            </NavLink>
           </div>
         </div>
       </div>

@@ -13,9 +13,18 @@ export default {
         'bg-page': '#fafafa',
         'silver': '#cfc0bd',
         'battleship-gray': '#7f9183',
-        'timberwolf': '#ddd5d0',
-        'ash-gray': '#b8b8aa',
+        'timberwolf-light': '#ddd5d0',
+        'timberwolf-dark': '#706259',
         'feldgrau': '#586f6b',
+        'ash-gray-100': '#FCFFF2',
+        'ash-gray-200': '#FBFEEF',
+        'ash-gray-300': '#F4F6E6',
+        'ash-gray-400': '#E0E1D1',
+        'ash-gray-500': '#b8b8aa',
+        'ash-gray-600': '#939276',
+        'ash-gray-700': '#6A6A5E',
+        'ash-gray-800': '#47473B',
+        'ash-gray-900': '#26261B',
       },
       fontFamily: {
         'work-sans': ['"Work Sans"', 'system-ui', 'sans-serif'],
@@ -41,7 +50,7 @@ export default {
 
           },
           '90%': { 
-            transform: 'translateX(10%)'
+            transform: 'translateX(5%)'
            }
         },
         fall: {
@@ -56,7 +65,7 @@ export default {
       },
       animation: {
         'slam': 'slide 3s cubic-bezier(0.3, -0.05, 0.8, -0.1) infinite',
-        'fade': 'fade 2s linear 1'
+        'fade': 'fade 1.2s ease-out 1'
       }
     },
   },

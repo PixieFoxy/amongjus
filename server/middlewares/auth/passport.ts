@@ -8,7 +8,7 @@ passport.use(new Strategy({
     passwordField: 'password',
     passReqToCallback: true
     },
-    async function (req: Express.Request, email: string, password: string, done) {
+    async function (_req: Express.Request, email: string, password: string, done) {
         const user = await prisma.user.findUnique({
             where: {
                 email: email
@@ -16,10 +16,12 @@ passport.use(new Strategy({
         });
 
         if (!user) {
+            console.log("Incorrect credentials (user)");
             return done(null, false, { message: "Incorrect credentials (user)" });
         }
 
         if (!await bcrypt.compare(password, user.password)) {
+            console.log("Incorrect credentials (password)");
             return done(null, false, { message: "Incorrect credentials (password)" });
         }
 
@@ -35,6 +37,11 @@ passport.deserializeUser(async (id: number, done) => {
         const user = await prisma.user.findUnique({
             where: {
                 id: id
+            },
+            select: {
+                id: true,
+                email: true,
+                role: true
             }
         });
         return done(null, user);

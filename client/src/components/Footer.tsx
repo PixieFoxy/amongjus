@@ -1,30 +1,30 @@
-import React from "react";
 import logo from "../assets/logo.png";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
     <>
-      <div className="flex justify-between items-center pt-12 px-8 pb-4">
+      <div className="flex justify-between items-center pt-10 px-8 pb-4 border-t border-black">
         <div id="footer-logo">
-          <a href="/">
+          <Link to="/">
             <img src={logo} className="w-full h-full" alt="amongjus logo" />
-          </a>
+          </Link>
         </div>
         <div
           id="footer-menu"
-          className="flex justify-between items-center basis-1/2"
+          className="flex justify-between items-center basis-1/2 mr-8"
         >
           <div className="navbar-menu-item">
-            <a href="#">FAQs</a>
+            <Link to="/faq">FAQs</Link>
           </div>
           <div className="navbar-menu-item">
-            <a href="#">Contact Us</a>
+            <Link to="/contact">Contact Us</Link>
           </div>
           <div className="navbar-menu-item">
-            <a href="#">Careers</a>
+            <Link to="/careers">Careers</Link>
           </div>
           <div className="navbar-menu-item">
-            <a href="#">Privacy Policy</a>
+            <Link to="/privacy">Privacy Policy</Link>
           </div>
         </div>
       </div>
