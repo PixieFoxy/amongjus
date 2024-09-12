@@ -53,7 +53,7 @@ const ActionFormModal = (props: Props) => {
           required
         />
 
-        <button type="submit" className="font-permanent-marker bg-ash-gray-200">AKU MAU MINUM JÜS !</button>
+        <button type="submit" className="font-permanent-marker bg-ash-gray-200">I WANNA DRINK JÜS !</button>
       </form>
     </div>
   );

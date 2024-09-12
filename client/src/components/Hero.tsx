@@ -73,7 +73,7 @@ const Hero = () => {
             className="grow-2 w-3/5 font-bungee tracking-[0.1em] text-4xl bg-gradient-action-button"
             onClick={handleActionButtonClick}
           >
-            MINUM JÜS AJA COK
+            LET'S DRINK SOME JÜS
           </button>
         </div>
         {showActionModal && <ActionFormModal onClose={handleActionButtonClick} />}

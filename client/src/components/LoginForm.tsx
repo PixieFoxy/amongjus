@@ -1,6 +1,6 @@
 import { AxiosError } from "axios";
 import { FormEvent, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 const LoginForm = () => {
@@ -9,13 +9,15 @@ const LoginForm = () => {
   const { user, login } = useAuth();
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   // Prevent user from accessing login page if the user is already logged in
   useEffect(() => {
     if (user.id !== undefined) {
-      navigate("/dashboard");
+      const { from } = location.state || { from: { pathname: "/dashboard" } };
+      navigate(from, { replace: true });
     }
-  }, [user, navigate]);
+  }, [user, location, navigate]);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>): Promise<void> {
     e.preventDefault();

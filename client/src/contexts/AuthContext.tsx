@@ -20,7 +20,7 @@ const AuthContext = createContext<AuthContextType | Record<string, never>>({});
 
 async function verifyAuth() {
   try {
-    const response = await axiosInstance.get("/user/getuser", {
+    const response = await axiosInstance.get("/user/get-user", {
       withCredentials: true,
     });
     // The cookie still holds a valid session with a logged in user,

@@ -15,10 +15,10 @@
     form label {
         @apply font-roboto-mono font-bold text-xl
     }
-    form input {
-        @apply px-3 py-2 mr-3 mt-2 mb-4 font-roboto-mono rounded-md w-full bg-gray-200
+    form input, textarea, select {
+        @apply px-3 py-2 mr-3 mt-2 mb-4 font-roboto-mono rounded-md w-full bg-slate-200
     }
-    form input:focus {
+    form input:focus, textarea:focus {
         @apply bg-timberwolf-dark outline-black text-white outline outline-2
     }
     form button {
