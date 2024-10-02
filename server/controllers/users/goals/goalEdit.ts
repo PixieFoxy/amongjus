@@ -4,6 +4,8 @@ import { Gender, Prisma } from "@prisma/client";
 import { calculateGoalNutrition } from "./calculateGoalNutrition";
 import assert from "assert";
 
+// Input needed:
+// req.body.target: string that can be converted to number
 async function goalEdit(req: Request, res: Response) {
   try {
     if (req.user?.id === undefined) {
@@ -42,7 +44,9 @@ async function goalEdit(req: Request, res: Response) {
 
     const nutritionCreated = await prisma.nutrition.upsert({
       where: {
-        id: profile.goal?.targetNutritionId,
+        id: profile.goal
+          ? profile.goal.targetNutritionId
+          : -1,
       },
       create: {
         energy: nutritionCalculation.energy,

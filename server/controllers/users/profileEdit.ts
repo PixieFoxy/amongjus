@@ -9,6 +9,9 @@ async function profileEdit(req: Request, res: Response) {
       return res.sendStatus(401);
     }
 
+    const inputAge = parseInt(req.body.age);
+    const inputWeight = parseInt(req.body.weight);
+    const inputHeight = parseInt(req.body.height);
     const user = await prisma.user.update({
       where: {
         id: req.user.id,
@@ -27,9 +30,9 @@ async function profileEdit(req: Request, res: Response) {
                   : req.body.gender === "other"
                   ? Gender.other
                   : Gender.none,
-              age: parseInt(req.body.age),
-              weight: parseInt(req.body.weight),
-              height: parseInt(req.body.height),
+              age: Number.isNaN(inputAge) ? 0 : inputAge,
+              weight: Number.isNaN(inputWeight) ? 0 : inputWeight,
+              height: Number.isNaN(inputHeight) ? 0 : inputHeight,
               bio: req.body.bio,
             },
             update: {
@@ -43,9 +46,9 @@ async function profileEdit(req: Request, res: Response) {
                   : req.body.gender === "other"
                   ? Gender.other
                   : Gender.none,
-              age: parseInt(req.body.age),
-              weight: parseInt(req.body.weight),
-              height: parseInt(req.body.height),
+              age: Number.isNaN(inputAge) ? 0 : inputAge,
+              weight: Number.isNaN(inputWeight) ? 0 : inputWeight,
+              height: Number.isNaN(inputHeight) ? 0 : inputHeight,
               bio: req.body.bio,
             },
           },

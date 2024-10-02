@@ -1,8 +1,10 @@
 import { FormEvent, useEffect, useState } from "react";
 import axiosInstance from "../utils/axios";
 import { AxiosError } from "axios";
+import { useNavigate } from "react-router-dom";
 
 const EditProfile = () => {
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -12,6 +14,7 @@ const EditProfile = () => {
     weight: "",
     height: "",
     bio: "",
+    target: "",
   });
 
   // Fetch the existing profile and pre-fill the form with current profile.
@@ -30,6 +33,7 @@ const EditProfile = () => {
           weight: data.weight,
           height: data.height,
           bio: data.bio,
+          target: data.goal ? data.goal.target : "0",
         });
       }
     };
@@ -45,6 +49,7 @@ const EditProfile = () => {
         weight: "",
         height: "",
         bio: "",
+        target: "",
       });
     };
   }, []);
@@ -61,7 +66,8 @@ const EditProfile = () => {
   async function handleSubmit(e: FormEvent<HTMLFormElement>): Promise<void> {
     e.preventDefault();
     try {
-      const response = await axiosInstance.post(
+      // Edit the user profile based on the form.
+      await axiosInstance.post(
         "/user/profile-edit",
         {
           firstName: formData.firstName,
@@ -76,7 +82,21 @@ const EditProfile = () => {
           withCredentials: true,
         }
       );
-      alert(JSON.stringify(response.data));
+      // Edit the user goal based on the form.
+      if (formData.target) {
+        await axiosInstance.post(
+          "/user/goal-edit",
+          {
+            target: formData.target,
+          },
+          {
+            withCredentials: true,
+          }
+        );
+      }
+      // Once the profile has been updated, alert the user and navigate back to dashboard.
+      alert("Profile has been updated.");
+      navigate("/dashboard");
     } catch (error) {
       if (error instanceof AxiosError) {
         if (
@@ -148,6 +168,7 @@ const EditProfile = () => {
               type="number"
               min={0}
               max={200}
+              required
               name="age"
               value={formData.age}
               onChange={handleInputChange}
@@ -165,6 +186,7 @@ const EditProfile = () => {
                 type="number"
                 min={0}
                 step={1}
+                required
                 name="weight"
                 value={formData.weight}
                 onChange={handleInputChange}
@@ -184,6 +206,7 @@ const EditProfile = () => {
                 type="number"
                 min={0}
                 step={1}
+                required
                 name="height"
                 className="w-7/8"
                 value={formData.height}
@@ -194,6 +217,26 @@ const EditProfile = () => {
               </span>
             </div>
           </div>
+        </div>
+        <div className="w-full">
+          <label htmlFor="target" className="p-1">
+            Goal
+          </label>
+          <select
+            name="target"
+            value={formData.target}
+            onChange={handleInputChange}
+            required
+          >
+            <option value="0">I'm not sure</option>
+            <option value="1">Lose weight</option>
+            <option value="2">Detoxify</option>
+            <option value="3">Strengthen skin</option>
+          </select>
+          <p className="font-work-sans font-medium">
+            The goal takes into account your gender, age, weight, and height for
+            calculating your recommended daily nutrition intake.
+          </p>
         </div>
         <div className="w-full">
           <label htmlFor="bio" className="p-1">

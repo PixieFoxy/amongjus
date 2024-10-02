@@ -201,6 +201,7 @@ const NutritionEntryForm = (props: Props) => {
                   min={0}
                   step={1}
                   name="energy"
+                  required
                   value={formData.energy}
                   onChange={handleInputChange}
                   className="m-0"
@@ -219,6 +220,7 @@ const NutritionEntryForm = (props: Props) => {
                   min={0}
                   step={0.1}
                   name="fat"
+                  required
                   value={formData.fat}
                   onChange={handleInputChange}
                   className="m-0"
@@ -235,6 +237,7 @@ const NutritionEntryForm = (props: Props) => {
                   min={0}
                   step={0.1}
                   name="carbs"
+                  required
                   value={formData.carbs}
                   onChange={handleInputChange}
                   className="m-0"
@@ -251,6 +254,7 @@ const NutritionEntryForm = (props: Props) => {
                   min={0}
                   step={0.1}
                   name="protein"
+                  required
                   value={formData.protein}
                   onChange={handleInputChange}
                   className="m-0"
@@ -267,6 +271,7 @@ const NutritionEntryForm = (props: Props) => {
                   min={0}
                   step={0.1}
                   name="fibre"
+                  required
                   value={formData.fibre}
                   onChange={handleInputChange}
                   className="m-0"
@@ -283,6 +288,7 @@ const NutritionEntryForm = (props: Props) => {
                   min={0}
                   step={0.1}
                   name="sugar"
+                  required
                   value={formData.sugar}
                   onChange={handleInputChange}
                   className="m-0"
@@ -299,6 +305,7 @@ const NutritionEntryForm = (props: Props) => {
                   min={0}
                   step={1}
                   name="sodium"
+                  required
                   value={formData.sodium}
                   onChange={handleInputChange}
                   className="m-0"

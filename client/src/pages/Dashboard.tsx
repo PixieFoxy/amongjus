@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
-import DisplayProfile from "../components/DisplayProfile";
-import DisplayGoal from "../components/DisplayGoal";
+import DisplayGoalDashboard from "../components/DisplayGoalDashboard";
+import DisplayProfileDashboard from "../components/DisplayProfileDashboard";
 
 const Dashboard = () => {
-  const { user, logout } = useAuth();
+  const { logout } = useAuth();
   const navigate = useNavigate();
 
   const signOut = async () => {
@@ -17,25 +17,22 @@ const Dashboard = () => {
       <div className="w-fit flex gap-16 pt-8">
         <button
           onClick={signOut}
-          className="p-8 rounded-lg outline hover:bg-timberwolf-light"
+          className="p-8 rounded-lg bg-ash-gray-500 hover:bg-ash-gray-800 hover:text-white text-2xl font-roboto-mono font-bold tracking-widest"
         >
           LOGOUT
         </button>
         <button
           onClick={() => navigate("/edit-profile")}
-          className="p-8 rounded-lg outline hover:bg-timberwolf-light"
+          className="p-8 rounded-lg bg-ash-gray-500 hover:bg-ash-gray-800 hover:text-white text-2xl font-roboto-mono font-bold tracking-widest"
         >
           EDIT PROFILE
         </button>
       </div>
       <div>
-        <DisplayProfile />
+        <DisplayProfileDashboard />
       </div>
       <div>
-        <DisplayGoal />
-      </div>
-      <div className="text-4xl animate-pulse text-center p-16">
-        Dashboard of {user.email}
+        <DisplayGoalDashboard />
       </div>
     </div>
   );

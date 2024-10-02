@@ -20,6 +20,11 @@ async function getProfile(req: Request, res: Response) {
         weight: true,
         height: true,
         bio: true,
+        goal: {
+          select: {
+            target: true,
+          },
+        },
       },
     });
     res.json(profile);
